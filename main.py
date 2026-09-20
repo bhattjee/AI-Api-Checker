@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-import google.generativeai as genai
+import google.genai as genai
 import os
 from dotenv import load_dotenv
 
@@ -16,9 +16,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-# Use updated model name
-model = genai.GenerativeModel('gemini-1.5-flash')
+client = genai.Client(api_key=os.getenv("GOOGLE_API_KEY"))
+model_name = 'gemini-pro-latest'
 
 class Question(BaseModel):
     question: str
@@ -26,7 +25,10 @@ class Question(BaseModel):
 @app.post("/ask")
 async def ask_question(question: Question):
     try:
-        response = model.generate_content(question.question)
+        response = client.models.generate_content(
+            model=model_name,
+            contents=question.question
+        )
         return {"answer": response.text}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
