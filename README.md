@@ -1,4 +1,4 @@
-# Chatbot-Api-Project
+# AI-Api-Checker
 
 A modern AI-powered Q&A chatbot application built with FastAPI and Google's Gemini AI. This project provides a RESTful API for interacting with an AI chatbot, along with a clean, responsive web interface.
 
@@ -120,13 +120,6 @@ curl -X POST http://localhost:8000/ask \
   -d '{"question": "What is artificial intelligence?"}'
 ```
 
-## Security Notes
-
-- **Never commit your `.env` file** to version control
-- The `.gitignore` file is configured to exclude sensitive files
-- Keep your Google API key secure and rotate it if compromised
-- In production, use environment variables or a secrets manager
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
@@ -166,13 +159,3 @@ The API is configured to allow all origins for development. For production, upda
 ```python
 allow_origins=["https://yourdomain.com"]
 ```
-
-## Future Enhancements
-
-- [ ] Add user authentication
-- [ ] Implement conversation history
-- [ ] Add rate limiting
-- [ ] Support for multiple AI models
-- [ ] Docker containerization
-- [ ] Unit and integration tests
-- [ ] WebSocket support for real-time chat
